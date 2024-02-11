@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, render_template
-from helpers import token_required
+from helpers import token_required, current_user_token
 from models import db, User, Contact, contact_schema, contacts_schema
 
 api = Blueprint('api',__name__, url_prefix='/api')
@@ -19,7 +19,7 @@ def create_contact(urrent_user_token):
 
     print(f'BIG TESTER {current_user_token.token}')
 
-    contact - Contact(name, email, phone_number, address, user_token=user_token)
+    contact = Contact(name, email, phone_number, address, user_token=user_token)
 
     db.session.add(contact)
     db.session.commit
@@ -35,7 +35,7 @@ def get_contact(current_user_token):
     response = contacts_schema.dump(contacts)
     return jsonify(response)
 
-@api.route('/contacts/<id', methods = ['GET'])
+@api.route('/contacts/<id>', methods = ['GET'])
 @token_required
 def get_single_contact(current_user_token, id):
     contact = contact.query.get(id)
@@ -54,7 +54,7 @@ def update_contact(current_user_token, id):
 # Delete endpoint
 @api.route('/contacts/<id>', methods = ['DELETE'])
 @token_required
-def update_contact(current_user_token, id):
+def delete_contact(current_user_token, id):
     contact = Contact.query.get(id)
     db.session.delete(contact)
     db.session.commit()
