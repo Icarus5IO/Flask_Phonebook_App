@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, render_template
-from helpers import token_required, current_user_token
+from helpers import token_required
 from models import db, User, Contact, contact_schema, contacts_schema
 
 api = Blueprint('api',__name__, url_prefix='/api')
@@ -10,7 +10,7 @@ def getdata():
 
 @api.route('/contacts', methods = ['POST'])
 @token_required
-def create_contact(urrent_user_token):
+def create_contact(current_user_token):
     name = request.jason['name']
     email = request.json['email']
     phone_number = request.json['phone_number']
@@ -19,7 +19,7 @@ def create_contact(urrent_user_token):
 
     print(f'BIG TESTER {current_user_token.token}')
 
-    contact = Contact(name, email, phone_number, address, user_token=user_token)
+    contact = Contact(name, email, phone_number, address, user_token = user_token)
 
     db.session.add(contact)
     db.session.commit

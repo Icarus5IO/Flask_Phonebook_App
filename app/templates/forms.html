@@ -1,3 +1,11 @@
+<!-- 
+    Another jinja based html link that refers back to base.html. The purpose if this html is to enter
+    user information for profile access.
+
+    NOTE:{{ form.email(class = 'form-control', placeholder = 'place email here ') }}
+            ^python     ^bootstrap insertion
+-->
+
 <form method="POST">
     {{ form.hidden_tag() }}
     <div class="form-group">

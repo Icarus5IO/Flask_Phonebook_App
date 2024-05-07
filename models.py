@@ -1,11 +1,11 @@
-from flask_sqlalchemy import SQLAlchemy #overall main import to handle data btween app and db
-from flask_migrate import Migrate #part of what uploads data tables, auto_writes sql
-import uuid #universal unique identifier, distink string of numbers used for primary key
-from datetime import datetime #timestamp
-from werkzeug.security import generate_password_hash, check_password_hash #packages meant to encript passwords and username
+from flask_sqlalchemy import SQLAlchemy # Overall main import to handle data between app and db
+from flask_migrate import Migrate # Part of what uploads data tables, auto_writes sql
+import uuid # Universal unique identifier, distink string of numbers used for primary key
+from datetime import datetime # Timestamp
+from werkzeug.security import generate_password_hash, check_password_hash # Packages meant to encript passwords and username
 from flask_login import UserMixin 
 from flask_login import LoginManager
-from flask_marshmallow import Marshmallow #helps moving collections of data
+from flask_marshmallow import Marshmallow # Helps moving collections of data back and fourth
 import secrets 
 
 # set variables for class instantiation
@@ -46,7 +46,7 @@ class User(db.Model, UserMixin):
         self.pw_hash = generate_password_hash(password)
         return self.pw_hash
 
-    def __repr__(self):
+    def __repr__(self): # used to spit out all of what you made inside of a class
         return f'User {self.email} has been added to the database'
     
 class Contact(db.Model):
