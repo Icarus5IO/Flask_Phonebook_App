@@ -1,7 +1,7 @@
 alembic==1.12.0
 blinker==1.6.2
 click==8.1.3
-colorama @ file:///C:/ci_311/colorama_1676422310965/work
+colorama==0.4.6
 dnspython==2.4.2
 email-validator==1.3.1
 Flask==2.2.5
@@ -9,20 +9,20 @@ Flask-Cors==4.0.0
 Flask-Login==0.6.2
 flask-marshmallow==0.15.0
 Flask-Migrate==4.0.5
-Flask-SQLAlchemy==3.1.1
+Flask-SQLAlchemy
 Flask-WTF==1.1.1
 greenlet==2.0.2
 gunicorn==21.2.0
-idna @ file:///C:/ci_311/idna_1676424932545/work
+idna==3.4
 importlib-metadata==6.0.0
 itsdangerous==2.1.2
 MarkupSafe==2.1.3
-marshmallow==3.20.1
+marshmallow
 packaging==23.0
 psycopg2-binary==2.9.7
-python-dotenv==1.0.0
+python-dotenv
 SQLAlchemy==2.0.20
 typing_extensions==4.7.1
-Werkzeug==2.3.7
+Werkzeug
 WTForms==3.0.1
 zipp==3.14.0
