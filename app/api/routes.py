@@ -17,15 +17,15 @@ def create_contact(current_user_token):
     address = request.json['address']
     user_token = current_user_token.token
 
-    print(f'BIG TESTER {current_user_token.token}')
+    print(f'BIG TESTER: {current_user_token.token}')
 
-    contact = Contact(name, email, phone_number, address, user_token = user_token)
+    contact = Contact(name, email, phone_number, address, user_token = user_token )
 
     db.session.add(contact)
-    db.session.commit
+    db.session.commit()
 
-    respone = contact_schema.dump(contact)
-    return jsonify(respone)
+    response = contact_schema.dump(contact)
+    return jsonify(response)
 
 @api.route('/contacts', methods = ['GET'])
 @token_required
@@ -35,6 +35,7 @@ def get_contact(current_user_token):
     response = contacts_schema.dump(contacts)
     return jsonify(response)
 
+# Get single contact
 @api.route('/contacts/<id>', methods = ['GET'])
 @token_required
 def get_single_contact(current_user_token, id):
@@ -43,13 +44,19 @@ def get_single_contact(current_user_token, id):
     return jsonify(response)
 
 # Update endpoint
-@api.route('/contacts/<id>', methods = ['POST', 'PUT'])
+@api.route('/contacts/<id>', methods = ['POST','PUT'])
 @token_required
-def update_contact(current_user_token, id):
-    contact = Contact.query.get(id)
+def update_contact(current_user_token,id):
+    contact = Contact.query.get(id) 
     contact.name = request.json['name']
     contact.email = request.json['email']
     contact.phone_number = request.json['phone_number']
+    contact.address = request.json['address']
+    contact.user_token = current_user_token.token
+
+    db.session.commit()
+    response = contact_schema.dump(contact)
+    return jsonify(response)
 
 # Delete endpoint
 @api.route('/contacts/<id>', methods = ['DELETE'])
