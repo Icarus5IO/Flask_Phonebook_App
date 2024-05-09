@@ -1,5 +1,4 @@
 migrations/
 venv/
-requirements.txt
 __pycache__/
 *.pyc
